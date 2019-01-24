@@ -8,7 +8,7 @@ class ResponseBuilder
 {
     protected $serializer;
 
-    public function __construct($serialize)
+    public function __construct($serializer)
     {
         $this->serializer = $serializer;
     }
