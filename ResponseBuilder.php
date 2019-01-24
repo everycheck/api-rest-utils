@@ -1,9 +1,8 @@
 <?php
-namespace CoreBundle\ControllerTrait;
+namespace EveryCheck\ApiRest\Utils;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Form;
-use CoreBundle\Entity\ComponentFile;
 
 class ResponseBuilder 
 {
