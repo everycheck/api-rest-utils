@@ -34,5 +34,6 @@ All methode return a `Symfony\Component\HttpFoundation\Response`, with json cont
 - forbidden
 - badRequest
 - formError
+- unauthorized
 
 

@@ -74,6 +74,11 @@ class ResponseBuilder
         return $this->json($entity,Response::HTTP_BAD_REQUEST);
     }
 
+    public function unauthorized() : Response
+    {
+        return $this->json(['message'=> 'Valid authentification required.'],Response::HTTP_UNAUTHORIZED);
+    }
+
     private function getErrorMessages(Form $form) 
     {
         $errors = $this->getAllErrors($form);
