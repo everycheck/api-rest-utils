@@ -7,15 +7,21 @@ use Symfony\Component\Form\Form;
 class ResponseBuilder 
 {
     protected $serializer;
+    protected $groups = null;
 
     public function __construct($serializer)
     {
         $this->serializer = $serializer;
     }
 
+    public function setSerializationGroups($groups)
+    {
+        $this->groups = $groups;
+    }
+
     public function json($entity,$code) : Response
     {
-        $data = $this->serializer->serialize($entity,'json');
+        $data = $this->serializer->serialize($entity,'json',$this->groups);
         return new Response($data,$code,['Content-type'=>'application/json']);
     }
 
