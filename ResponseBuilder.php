@@ -8,10 +8,17 @@ class ResponseBuilder
 {
     protected $serializer;
     protected $groups = null;
+    protected $headers = ['Content-type'=>'application/json'];
 
     public function __construct($serializer)
     {
         $this->serializer = $serializer;
+    }
+
+    public function addHeaders($name,$value) : ResponseBuilder
+    {
+        $this->headers[$name]=$value;
+        return $this;
     }
 
     public function setSerializationGroups($groups)
@@ -22,7 +29,7 @@ class ResponseBuilder
     public function json($entity,$code) : Response
     {
         $data = $this->serializer->serialize($entity,'json',$this->groups);
-        return new Response($data,$code,['Content-type'=>'application/json']);
+        return new Response($data,$code,$this->headers);
     }
 
     public function empty() : Response

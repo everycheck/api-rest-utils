@@ -33,7 +33,23 @@ All methode return a `Symfony\Component\HttpFoundation\Response`, with json cont
 - forbiddenAcl
 - forbidden
 - badRequest
-- formError
+- formError __for parsing symfony form error__
 - unauthorized
 
+## Configuring headers
+
+Use the `addHeaders` method : 
+
+
+```php 
+    public function getAction($id)
+    {
+        $response  = new ResponseBuilder($this->get('jms_serializer'));
+        $entity = $this->getDoctrine()->getManager()->getRepository(Entity::class)->find($id);
+        
+        if(empty($entity)) return $response->notFound();
+        
+        return $response->addHeaders('X-something','some-value')->ok($entities);
+    }
+```    
 
