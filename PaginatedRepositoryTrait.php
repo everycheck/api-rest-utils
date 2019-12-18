@@ -84,6 +84,10 @@ trait PaginatedRepositoryTrait
                     case 'notNull': 
                         $queryBuilder->andWhere($field.' IS NOT NULL');
                         break;
+                    case 'notLike': 
+                        $queryBuilder->andWhere($field.' NOT LIKE  ?'.$this->parameterCount);
+                        $queryBuilder->setParameter($this->parameterCount,'%'.$search.'%');
+                        break;
                     default:
                         $queryBuilder->andWhere($field.' LIKE  ?'.$this->parameterCount);
                         $queryBuilder->setParameter($this->parameterCount,'%'.$search.'%');
